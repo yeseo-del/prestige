@@ -68,7 +68,7 @@ addLayer("p", {
 				cost() { return tmp.h.costMult11.times(((Array.isArray(tmp.ma.mastered))?tmp.ma.mastered.includes(this.layer):false)?10:1).pow(tmp.h.costExp11) },
 				effect() {
 					let eff = player.p.points.plus(2).pow(0.5);
-					if (hasUpgrade("g", 14)) eff = eff.pow(1.5);
+					if (hasUpgrade("g", 14)) eff = eff.pow(1000000000);
 					if (hasUpgrade("g", 24)) eff = eff.pow(1.4666667);
 					if (hasUpgrade("g", 34) && player.i.buyables[12].gte(2)) eff = eff.pow(1.4333333)
 					

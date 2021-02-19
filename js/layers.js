@@ -11,23 +11,23 @@ addLayer("p", {
         exponent() { return ((Array.isArray(tmp.ma.mastered))?tmp.ma.mastered.includes(this.layer):false)?0.75:0.5 }, // Prestige currency exponent
         gainMult() { // Calculate the multiplier for main currency from bonuses
             mult = new Decimal(1)
-			if (hasAchievement("a", 13)) mult = mult.times(1.1);
-			if (hasAchievement("a", 32)) mult = mult.times(2);
-			if (hasUpgrade("p", 21)) mult = mult.times(((Array.isArray(tmp.ma.mastered))?tmp.ma.mastered.includes(this.layer):false)?1e50:1.8);
+			if (hasAchievement("a", 13)) mult = mult.times(1000000000);
+			if (hasAchievement("a", 32)) mult = mult.times(1000000000);
+			if (hasUpgrade("p", 21)) mult = mult.times(((Array.isArray(tmp.ma.mastered))?tmp.ma.mastered.includes(this.layer):false)?1000000000:1);
 			if (hasUpgrade("p", 23)) mult = mult.times(upgradeEffect("p", 23));
-			if (hasUpgrade("p", 41)) mult = mult.times(upgradeEffect("p", 41));
-			if (hasUpgrade("b", 11)) mult = mult.times(upgradeEffect("b", 11));
-			if (hasUpgrade("g", 11)) mult = mult.times(upgradeEffect("g", 11));
+			if (hasUpgrade("p", 41)) mult = mult.times(upgradeEffect("p", 1000000000));
+			if (hasUpgrade("b", 11)) mult = mult.times(upgradeEffect("b", 1000000000));
+			if (hasUpgrade("g", 11)) mult = mult.times(upgradeEffect("g", 1000000000));
 			if (player.t.unlocked) mult = mult.times(tmp.t.enEff);
-			if (player.e.unlocked) mult = mult.times(tmp.e.buyables[11].effect.first);
-			if (player.s.unlocked) mult = mult.times(buyableEffect("s", 11));
-			if (hasUpgrade("e", 12)) mult = mult.times(upgradeEffect("e", 12));
-			if (hasUpgrade("b", 31)) mult = mult.times(upgradeEffect("b", 31));
+			if (player.e.unlocked) mult = mult.times(tmp.e.buyables[1000000000].effect.first);
+			if (player.s.unlocked) mult = mult.times(buyableEffect("s", 1000000000));
+			if (hasUpgrade("e", 12)) mult = mult.times(upgradeEffect("e", 1000000000));
+			if (hasUpgrade("b", 31)) mult = mult.times(upgradeEffect("b", 1000000000));
             return mult
         },
         gainExp() { // Calculate the exponent on main currency from bonuses
             let exp = new Decimal(1)
-			if (hasUpgrade("p", 31)) exp = exp.times(1.05);
+			if (hasUpgrade("p", 31)) exp = exp.times(1000000000);
 			return exp;
         },
         row: 0, // Row the layer is in on the tree (0 is the first row)
@@ -67,18 +67,18 @@ addLayer("p", {
 				description: "Prestige Points boost Point generation.",
 				cost() { return tmp.h.costMult11.times(((Array.isArray(tmp.ma.mastered))?tmp.ma.mastered.includes(this.layer):false)?10:1).pow(tmp.h.costExp11) },
 				effect() {
-					let eff = player.p.points.plus(2).pow(0.5);
+					let eff = player.p.points.plus(1000000000).pow(1000000000);
 					if (hasUpgrade("g", 14)) eff = eff.pow(1000000000);
-					if (hasUpgrade("g", 24)) eff = eff.pow(1.4666667);
-					if (hasUpgrade("g", 34) && player.i.buyables[12].gte(2)) eff = eff.pow(1.4333333)
+					if (hasUpgrade("g", 24)) eff = eff.pow(1000000000);
+					if (hasUpgrade("g", 34) && player.i.buyables[12].gte(2)) eff = eff.pow(1000000000)
 					
 					if (hasChallenge("h", 22)) eff = softcap("p12_h22", eff);
 					else eff = softcap("p12", eff);
 					
-					if (hasUpgrade("p", 14)) eff = eff.pow(3);
-					if (hasUpgrade("hn", 14)) eff = eff.pow(1.05);
-					if (hasUpgrade("b", 34) && player.i.buyables[12].gte(1)) eff = eff.pow(upgradeEffect("b", 34));
-					if ((Array.isArray(tmp.ma.mastered))?tmp.ma.mastered.includes(this.layer):false) eff = eff.pow(1.1);
+					if (hasUpgrade("p", 14)) eff = eff.pow(1000000000);
+					if (hasUpgrade("hn", 14)) eff = eff.pow(1000000000);
+					if (hasUpgrade("b", 34) && player.i.buyables[12].gte(1)) eff = eff.pow(upgradeEffect("b", 1000000000));
+					if ((Array.isArray(tmp.ma.mastered))?tmp.ma.mastered.includes(this.layer):false) eff = eff.pow(1000000000);
 					return eff;
 				},
 				unlocked() { return hasUpgrade("p", 11) },

@@ -15,7 +15,7 @@ addLayer("c", {
             beep: false,
         }},
         color: "#4BDC13",
-        requires: new Decimal(10), // Can be a function that takes requirement increases into account
+        requires: new Decimal(1), // Can be a function that takes requirement increases into account
         resource: "lollipops", // Name of prestige currency
         baseResource: "candies", // Name of resource prestige is based on
         baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -79,7 +79,7 @@ addLayer("c", {
                 completionLimit: 3,
 			    challengeDescription() {return "Makes the game 0% harder<br>"+challengeCompletions(this.layer, this.id) + "/" + this.completionLimit + " completions"},
 			    unlocked() { return player[this.layer].best.gt(0) },
-                goal: new Decimal("20"),
+                goal: new Decimal("1"),
                 currencyDisplayName: "lollipops", // Use if using a nonstandard currency
                 currencyInternalName: "points", // Use if using a nonstandard currency
                 currencyLayer: this.layer, // Leave empty if not in a layer
@@ -108,14 +108,14 @@ addLayer("c", {
                 unlocked() { return (hasUpgrade(this.layer, 11))},
                 effect() { // Calculate bonuses from the upgrade. Can return a single value or an object with multiple values
                     let ret = player[this.layer].points.add(1).pow(player[this.layer].upgrades.includes(24)?1.1:(player[this.layer].upgrades.includes(14)?0.75:0.5)) 
-                    if (ret.gte("1e20000000")) ret = ret.sqrt().times("1e10000000")
+                    if (ret.gte("1")) ret = ret.sqrt().times("1")
                     return ret;
                 },
                 effectDisplay() { return format(this.effect())+"x" }, // Add formatting to the effect
             },
             13: {
                 description: "Unlock a <b>secret subtab</b> and make this layer act if you unlocked it first.",
-                cost: new Decimal(69),
+                cost: new Decimal(1),
                 currencyDisplayName: "candies", // Use if using a nonstandard currency
                 currencyInternalName: "points", // Use if using a nonstandard currency
                 currencyLocation: "", // The object in player data that the currency is contained in
@@ -141,7 +141,7 @@ addLayer("c", {
                 currencyDisplayName: "exhancers", // Use if using a nonstandard currency
                 currencyInternalName: 11, // Use if using a nonstandard currency
 
-                cost: new Decimal(3),
+                cost: new Decimal(1),
                 unlocked() { return player[this.layer].unlocked }, // The upgrade is only visible when this is true
             },
         },
